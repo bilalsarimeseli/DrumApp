@@ -5,6 +5,7 @@ for (var i = 0; i < buttonNum; i++) {
   document.querySelectorAll(".drum")[i].addEventListener("click", function () {
     var buttonInnerHTML = this.innerHTML;
     soundMaker(buttonInnerHTML);
+    buttonAnimation(buttonInnerHTML);
   });
 }
 
@@ -12,6 +13,7 @@ for (var i = 0; i < buttonNum; i++) {
 
 document.addEventListener("keydown", function (event) {
   soundMaker(event.key);
+  buttonAnimation(event.key);
 });
 function soundMaker(key) {
   switch (key) {
@@ -40,4 +42,13 @@ function soundMaker(key) {
 
     default:
   }
+}
+
+function buttonAnimation(currentKey){
+  let activeButton = document.querySelector(`.${currentKey}`);
+  activeButton.classList.add("pressed");
+  setTimeout(function(){
+    activeButton.classList.remove("pressed");
+  }, 100)
+
 }
